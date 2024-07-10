@@ -15,7 +15,7 @@ class  LanguageDialog extends StatelessWidget {
          Row(children: [ const Icon(Icons.language), 
          25.widthBox,
          
-      Text('Change Language'.tr, style: const TextStyle(color: mainColor ,fontFamily: semibold),),],),
+      Text('Language'.tr, style: const TextStyle(color: mainColor ,fontFamily: semibold),),],),
           ListTile(
             title:const Text('English'),
             onTap: () {

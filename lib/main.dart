@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales:
             TranslationService.langs.map((lang) => Locale(lang, '')).toList(),
-        title: appname,
+       // title: appname,
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: regular,
         ),
-        home: SplashScreen2() 
+        home: SplashScreen(),
+
         );
   }
 }

@@ -5,6 +5,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LanguageController extends GetxController {
   final RxString selectedLanguage = ''.obs;
 
+  @override
+  void onInit() {
+    super.onInit();
+    loadSelectedLanguage();
+  }
+
   Future<void> selectLanguage(String language) async {
     selectedLanguage.value = language;
     final preferences = await SharedPreferences.getInstance();
@@ -17,5 +23,12 @@ class LanguageController extends GetxController {
     if (language != null) {
       selectedLanguage.value = language;
     }
+  }
+  
+  @override
+  Future<void> onClose() async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setString('selectedLanguage', selectedLanguage.value);
+    super.onClose();
   }
 }

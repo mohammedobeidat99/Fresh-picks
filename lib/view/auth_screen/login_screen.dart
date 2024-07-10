@@ -1,125 +1,210 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fresh_picks/controller/auth_control.dart';
 import 'package:fresh_picks/view/auth_screen/signup_screen.dart';
-import 'package:fresh_picks/view/home_screen/home.dart';
-import 'package:fresh_picks/widgets/applogo_widget.dart';
-import 'package:fresh_picks/widgets/bg_widget.dart';
+import 'package:fresh_picks/widgets/our_button.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import '../../consts/consts.dart';
-import '../../consts/list.dart';
 import '../../widgets/custom_textfield.dart';
-import '../../widgets/our_button.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AuthCotroller());
+    var controller = Get.put(AuthController());
+      bool _isArabic = false;
+      List<bool> _isSelected = [false, false];
 
-    return bgWidget(
-        child: Scaffold(
-      resizeToAvoidBottomInset: false,
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
       body: Center(
-        child: Column(
-          children: [
-            (context.screenHeight * 0.03).heightBox,
-
-          Lottie.asset( 'assets/lottie/130776-create-account.json',width: 200).box.roundedFull.size(300, 150).padding(EdgeInsets.all(8)).roundedFull.make(),
-
-          
-            
-
-            //10.heightBox,
-            "Log in to $appname".text.fontFamily(bold).white.size(18).make(),
-            10.heightBox,
-            Obx(
-              () => Column(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 60),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                
+                // ToggleButtons for language switching
+            Padding(
+              padding: const EdgeInsets.only( bottom: 14.0),
+              child: ToggleButtons(
+                
+                selectedColor: Colors.green,
+              fillColor: mainColor,
+              borderColor: mainColor,
+              borderRadius: BorderRadius.circular(10),
+                
+                
+                
+                
+                
+              
+                
+                onPressed: (int index) {
+                  setState(() {
+                    _isSelected = List.generate(_isSelected.length, (i) => i == index);
+                    if (index == 1) {
+                      _isArabic = true;
+                      Get.updateLocale(const Locale('ar', 'SA'));
+                    } else {
+                      _isArabic = false;
+                      Get.updateLocale(const Locale('en', 'US'));
+                    }
+                  });
+                },
+                isSelected: _isSelected,
                 children: [
-                  customTextField(
-                      hint: emailHint,
-                      title: email,
-                      ispass: false,
-                      controller: controller.emailController),
-                  customTextField(
-                      hint: passwordHint,
-                      title: password,
-                      ispass: true,
-                      controller: controller.passwordController),
-                  Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                          onPressed: () {},
-                          child:
-                              forgetpass.text.color(redColor).size(12).make())),
-                  5.heightBox,
-                  controller.isloading.value
-                      ? const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(mainColor),
-                        )
-                      : ourBoutton(
-                          color: mainColor,
-                          title: login,
-                          textcolor: whiteColor,
-                          onPress: () async {
-                            controller.isloading(true);
-
-                            await controller
-                                .loginMethod(context: context)
-                                .then((value) {
-                              if (value != null) {
-                                Get.offAll(() => const Home());
-                                VxToast.show(context, msg: "Log in saccss ");
-                              } else {
-                                controller.isloading(false);
-                                
-                              }
-                            });
-                          }).box.width(context.screenWidth - 50).make(),
-                  5.heightBox,
-                  loginwith.text.color(fontGrey).make(),
-                  5.heightBox,
-                  ourBoutton(
-                      color: redColor,
-                      title: signup,
-                      textcolor: whiteColor,
-                      onPress: () {
-                        Get.to(() => const SignupScreen());
-                      }).box.width(context.screenWidth - 50).make(),
-                  15.heightBox,
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                          3,
-                          (index) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CircleAvatar(
-                                  radius: 25,
-                                  backgroundColor: lightGrey,
-                                  child: Image.asset(
-                                    socialIconList[index],
-                                    width: 30,
-                                  ),
-                                ),
-                              )))
+                  Text(' English '),
+                  Text(' العربية '),
                 ],
-              )
-                  .box
-                  .white
-                  .rounded
-                  .shadow3xl
-                  .padding(const EdgeInsets.all(16))
-                  .width(context.screenWidth - 70)
-                  .make(),
+              ),
             ),
-            5.heightBox,
-          ],
+                Text(
+                  "Welcome Back".tr,
+                  style: TextStyle(
+                    fontFamily:
+                        'dms_reguler', // Change to your desired font family
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: const Color.fromARGB(255, 46, 46, 46),
+                    shadows: [
+                      Shadow(
+                        color: Colors.grey.withOpacity(0.25),
+                        offset: Offset(2, 2),
+                        blurRadius: 2,
+                      ),
+                    ],
+                  ),
+                ),
+
+                Container(
+                    padding: EdgeInsets.all(20),
+                    width: 300,
+                    child: Image.asset(
+                      loginimage,
+                    )),
+                // SizedBox(height: 20),
+                Text(
+                  "${'Sign in to Your Email And Password'.tr} ",
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(106, 173, 171, 171),
+                  ),
+                ),
+                SizedBox(height: 10),
+                customTextField(
+                  hint: emailHint,
+                  shapicon: Icon(Icons.email_outlined),
+                  title: email.tr,
+                  ispass: false,
+                  controller: controller.emailController,
+                ),
+                SizedBox(height: 10),
+                customTextField(
+                  shapicon: Icon(Icons.lock_outline),
+                  hint: passwordHint,
+                  title: password.tr,
+                  ispass: true,
+                  controller: controller.passwordController,
+                ),
+                SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      forgetpass.tr,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: darkFontGrey,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                // Inside your LoginScreen class
+
+                controller.isloading.value
+                    ? CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(mainColor),
+                      )
+                    : ourButton(
+                        color: mainColor,
+                        title: login.tr,
+                        textcolor: whiteColor,
+                        onPress: () async {
+                          await controller.loginMethod(context: context);
+                        },
+                      ),
+
+                SizedBox(height: 40),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => SignupScreen());
+                  },
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: loginwith.tr,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: fontGrey,
+                          ),
+                        ),
+                        TextSpan(
+                          text:
+                              ' ${'SignUp'.tr}', // Added space before 'Sign Up'
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: secondaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+
+                // ourButton(
+                //   color: redColor,
+                //   title: signup.tr,
+                //   textcolor: whiteColor,
+                //   onPress: () {
+                //     Get.to(() => const SignupScreen());
+                //   },
+
+                // ),
+                //  SizedBox(height: 15),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: List.generate(
+                //     3,
+                //     (index) => Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: CircleAvatar(
+                //         radius: 25,
+                //         backgroundColor: lightGrey,
+                //         child: Image.asset(
+                //           socialIconList[index],
+                //           width: 30,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ],
+            ),
+          ),
         ),
       ),
-    ));
+    );
   }
 }

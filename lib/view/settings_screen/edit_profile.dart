@@ -9,25 +9,29 @@ import 'package:get/get.dart';
 import '../../consts/consts.dart';
 
 class EditProfileScreen extends StatelessWidget {
-
   final dynamic data;
   final dynamic email;
-  final dynamic number;
-  final dynamic addres;
-  const EditProfileScreen({super.key ,this.data , this.email ,this.number,this.addres});
+  //inal dynamic number;
+  //final dynamic addres;
+  const EditProfileScreen({
+    super.key,
+    this.data,
+    this.email,
+  });
 
   @override
   Widget build(BuildContext context) {
     var controller = Get.find<ProfileController>();
-     
-    
 
     return bgWidget(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: "Edit Prpfile".text.color(mainColor).fontFamily(semibold).make(),),
-        body: Obx(()=>
-           Column(
+        appBar: AppBar(
+          title:
+              "Edit Prpfile".tr.text.color(mainColor).fontFamily(semibold).make(),
+        ),
+        body: Obx(
+          () => Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               controller.profileImgPath.isEmpty
@@ -36,54 +40,63 @@ class EditProfileScreen extends StatelessWidget {
                       width: 100,
                       fit: BoxFit.cover,
                     ).box.roundedFull.clip(Clip.antiAlias).make()
-                  : Image.file(File(controller.profileImgPath.value) ,
-                  width: 100,
-                  fit: BoxFit.cover,).box.roundedFull.clip(Clip.antiAlias).make(),
+                  : Image.file(
+                      File(controller.profileImgPath.value),
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ).box.roundedFull.clip(Clip.antiAlias).make(),
               10.heightBox,
-              ourBoutton(
+              ourButton(
                   color: mainColor,
                   onPress: () {
                     controller.changeImage(context);
                   },
-                  title: "Change",
+                  title: "Change".tr,
                   textcolor: whiteColor),
               const Divider(),
               20.heightBox,
-              customTextField(hint: "Name", title: "Name", ispass: false ,controller: controller.nameController),
-              customTextField(hint: passwordHint, title: password, ispass: true ,controller: controller.passController),
+              customTextField(
+                  hint: "Name".tr,
+                  title: "Name".tr,
+                  ispass: false,
+                  controller: controller.nameController),
+              customTextField(
+                  hint: passwordHint.tr,
+                  title: password.tr,
+                  ispass: true,
+                  controller: controller.passController),
               20.heightBox,
-              controller.isloading.value? CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(mainColor),
-              ): SizedBox(
-                  width: double.infinity - 60,
-                  child: ourBoutton(
-                      color: mainColor,
-                      onPress: () async {
-                        controller.isloading(true);
-                       await controller.uploadProfileImage();
-                       await controller.updateProfile(
-                        imgUrl: controller.profileImageLink,
-                        name:controller. nameController.text,
-                        password: controller.passController.text,
-                        email: email,
-                        addres: addres,
-                        number: number,
-
-                       );
-                       //VxToast.show(context, msg: "Update");
-                       Get.showSnackbar(
-                           const   GetSnackBar(
-                                
-                                message:  'Change successfully.',
-                                icon:   Icon(Icons.done),
+              controller.isloading.value
+                  ? CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(mainColor),
+                    )
+                  : SizedBox(
+                      width: double.infinity - 60,
+                      child: ourButton(
+                          color: mainColor,
+                          onPress: () async {
+                            controller.isloading(true);
+                            await controller.uploadProfileImage();
+                            await controller.updateProfile(
+                              imgUrl: controller.profileImageLink,
+                              name: controller.nameController.text,
+                              password: controller.passController.text,
+                              email: email,
+                              // addres: addres,
+                              // number: number,
+                            );
+                            //VxToast.show(context, msg: "Update");
+                            Get.showSnackbar(
+                              const GetSnackBar(
+                                message: 'Change successfully.',
+                                icon: Icon(Icons.done),
                                 backgroundColor: mainColor,
-                                duration:  Duration(seconds: 4),
+                                duration: Duration(seconds: 4),
                               ),
                             );
-
-                      },
-                      textcolor: whiteColor,
-                      title: "Save")),
+                          },
+                          textcolor: whiteColor,
+                          title: "Save".tr)),
             ],
           )
               .box

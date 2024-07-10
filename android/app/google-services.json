@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "356124248251",
-    "project_id": "freshpicks-ab0f0",
-    "storage_bucket": "freshpicks-ab0f0.appspot.com"
+    "project_number": "435174511391",
+    "project_id": "snaphop-2988a",
+    "storage_bucket": "snaphop-2988a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:356124248251:android:e65244049b38516b16819e",
+        "mobilesdk_app_id": "1:435174511391:android:b18d27e8af116b08a6962a",
         "android_client_info": {
           "package_name": "com.example.fresh_picks"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "356124248251-g2vopokc834tmjtks7k6l53u4qff1p1e.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBWmrYX6fDts9D-ybizZnt87WcQXUh80Lk"
+          "current_key": "AIzaSyDh8_ZvYETpMEUOlsV3xJ6Lbh3A_G68IPY"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "356124248251-g2vopokc834tmjtks7k6l53u4qff1p1e.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

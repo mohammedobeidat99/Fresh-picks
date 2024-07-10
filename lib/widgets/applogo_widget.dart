@@ -10,7 +10,7 @@ return  Container(
           ),
           child: ClipOval(
             child: Image.asset(
-              icAppLogo, // Replace with your image path
+              Logoapp, // Replace with your image path
               fit: BoxFit.cover, // Adjust the image fit
             ),
           ),

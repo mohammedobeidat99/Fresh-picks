@@ -1,54 +1,180 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:fresh_picks/consts/colors.dart';
+import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:fresh_picks/consts/consts.dart';
-import 'package:intro_screen_onboarding_flutter/introduction.dart';
-import 'package:intro_screen_onboarding_flutter/introscreenonboarding.dart';
+import 'package:fresh_picks/view/auth_screen/login_screen.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../consts/images.dart';
-import '../auth_screen/login_screen.dart';
-
-
-
-class TestScreen extends StatelessWidget {
-  final List<Introduction> list = [
-    Introduction(
-      titleTextStyle: TextStyle(color: mainColor ,fontFamily: semibold,fontSize: 26,),
-      title: 'Fresh Picks ' ,
-      subTitle: 'Explore top organic fruts & grab them',subTitleTextStyle: TextStyle(fontSize: 18,color: Colors.grey,),
-      imageUrl: icAppLogo,
-      
-
-    ),
-    Introduction(
-      titleTextStyle: TextStyle(color: mainColor,fontFamily: semibold,fontSize: 26,),
-      title: 'Shop from our store',
-      subTitle: 'Enjoy our fresh products',subTitleTextStyle: TextStyle(fontSize: 18,color: Colors.grey,),
-      imageUrl: 'assets/images/intro.jpeg',
-    ),
-    
-    Introduction(
-      titleTextStyle: TextStyle(color: mainColor,fontFamily: semibold,fontSize: 26,),
-      title: 'Welcome Application',
-      subTitle: 'Fresh vegetables&fruits ',subTitleTextStyle: TextStyle(fontSize: 18,color: Colors.grey,),
-      imageUrl: 'assets/images/DeliveryArrived.jpeg',
-    ),
-  ];
-
+class OnBoarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return IntroScreenOnboarding(
-      backgroudColor: Colors.white,
-      introductionList: list,
-      onTapSkipButton: () {
-        Navigator.push(
+    final Color kDarkBlueColor = secondaryColor;
+
+    return OnBoardingSlider(
+      finishButtonText: 'Continue',
+      onFinish: () {
+        Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
+          CupertinoPageRoute(
             builder: (context) => const LoginScreen(),
-          ), //MaterialPageRoute
+          ),
         );
       },
+      finishButtonStyle: FinishButtonStyle(
+        backgroundColor: kDarkBlueColor,
+      ),
+      skipTextButton: Text(
+        'Skip',
+        style: TextStyle(
+          fontSize: 16,
+          color: kDarkBlueColor,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+
+     
+
+      controllerColor: kDarkBlueColor,
+      totalPage: 3,
+      headerBackgroundColor: Colors.white,
+      pageBackgroundColor: Colors.white,
+      background: [
+        SizedBox(
+          width: 400,
+          child: Image.asset(
+            intro1,
+            height: 500,
+            //width: 400,
+          ),
+        ),
+        SizedBox(
+          width: 400,
+          child: Image.asset(
+            intro2,
+            height: 400,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 70),
+          child: SizedBox(
+            width: 400,
+            child: Lottie.asset('assets/lottie/intro1.json', width: 200)
+                .box
+                .roundedFull
+                .size(300, 300)
+                .padding(EdgeInsets.all(8))
+                .roundedFull
+                .make(),
+          ),
+        ),
+      ],
+      speed: 1.8,
+      pageBodies: [
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 450,
+              ),
+              Text(
+                'Shop Easily',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kDarkBlueColor,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                'By discovering our lowest prices, shopping has become easier than ever.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 450,
+              ),
+              Text(
+                'Shop Quietly',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kDarkBlueColor,
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                'We only care about the best products, ensuring that every product meets quality standards and the lowest prices.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width,
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(
+                height: 450,
+              ),
+              Text(
+                'Start now ',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: kDarkBlueColor,
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                'Welcome to Snapshop where your perfect find is just a click away.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

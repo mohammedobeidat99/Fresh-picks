@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../consts/consts.dart';
@@ -11,8 +12,8 @@ class SupportPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-        title: const Text(
-          'Support',
+        title:  Text(
+          'Support'.tr,
           style: TextStyle(fontFamily: semibold, color: mainColor),
         ),
       ),
@@ -22,18 +23,18 @@ class SupportPage extends StatelessWidget {
           children: [
             const Icon(Icons.support, size: 100, color: mainColor),
             const SizedBox(height: 16),
-            const Text(
-              'Contact Us',
+             Text(
+              'Contact Us'.tr,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 16),
-            const Padding(
+             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32),
               child: Text(
-                'If you have any questions or need assistance, please feel free to reach out to our customer support team.',
+                'If you have any questions or need assistance, please feel free to reach out to our customer support team.'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
@@ -43,12 +44,12 @@ class SupportPage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(backgroundColor: mainColor),
-              label: 'Contact Support'.text.make(),
-              icon: const Icon(Icons.phone),
+              label: Text('Contact Phone'.tr,style: TextStyle(color: Colors.white)),
+              icon: const Icon(Icons.phone,color: Colors.white,),
               onPressed: () async {
                 final Uri url=Uri(
                   scheme: 'tel',
-                  path: "0772319071",
+                  path: "0797662658",
 
 
                 );
@@ -70,10 +71,10 @@ class SupportPage extends StatelessWidget {
             const SizedBox(height: 32),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(backgroundColor: mainColor),
-              label: 'Contact Support'.text.make(),
-              icon: const Icon(Icons.email),
+              label: Text('Contact Email'.tr,style: TextStyle(color: Colors.white)),
+              icon: const Icon(Icons.email ,color: Colors.white),
               onPressed: ()async{
-                      String email = Uri.encodeComponent("obeidatmohammed80@gmail.com");
+                      String email = Uri.encodeComponent("wesam17@gmail.com");
                       String subject = Uri.encodeComponent("user frish picks");
                       String body = Uri.encodeComponent("Hey! I have a problem ..");
                       print(subject); //output: Hello%20Flutter

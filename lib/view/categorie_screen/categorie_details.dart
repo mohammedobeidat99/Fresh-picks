@@ -22,7 +22,7 @@ class CategoryDetails extends StatelessWidget {
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
-          title: category.name.text.fontFamily(bold).color(redColor).make(),
+          title: category.name.tr.text.fontFamily(bold).color(redColor).make(),
         ),
         body: Container(
           padding: const EdgeInsets.all(12),

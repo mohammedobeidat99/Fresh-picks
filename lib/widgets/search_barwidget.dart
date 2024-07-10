@@ -26,7 +26,7 @@ class SearchBarWidget extends StatelessWidget {
                   ? TextField(
                       controller: searchBarController.searchController,
                       decoration: InputDecoration(
-                        hintText: 'Search...',
+                        hintText: 'Search...'.tr,
                         border: InputBorder.none,
                       ),
                     )

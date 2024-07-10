@@ -1,16 +1,12 @@
 import 'package:fresh_picks/consts/consts.dart';
 
-const socialIconList = [
-  icFacebookLogo,
-  icGoogleLogo,
-  icTwitterLogo,
-];
+
 
 const SlidersList = [
   imgSlider1,
   imgSlider2,
   imgSlider3,
-  imgSlider4,
+  //imgSlider4,
   imgSs2,
   imgSs3,
   imgSs4,
@@ -21,9 +17,9 @@ const Profiletitle = [
   "About",
   "Support",
   "Language",
-  'About As',
-  'Location ',
-  'Order Hestory'
+  'About us',
+  'Location',
+  'Order History'
 ];
 const ProfileButtonsIcons = [
   Icon(Icons.edit),
@@ -32,5 +28,6 @@ const ProfileButtonsIcons = [
   Icon(Icons.language),
   Icon(Icons.info),
   Icon(Icons.pin_drop),
-  Icon(Icons.border_outer_rounded),
+  Icon(Icons.shopping_cart_checkout_sharp),
 ];
+
